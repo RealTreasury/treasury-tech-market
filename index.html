@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cash & Treasury Market Overview</title>
+    <style>
+        :root {
+            --primary-purple: #7216f4;
+            --secondary-purple: #8f47f6;
+            --light-purple: #c77dff;
+            --dark-text: #281345;
+            --gray-text: #7e7e7e;
+            --bg-light: #f8f8f8;
+            --bg-dark-gradient: linear-gradient(135deg, #230d41 0%, #1a0a30 100%);
+        }
+
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-weight: 400;
+            color: var(--dark-text);
+            background-color: var(--bg-light);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        /* --- Section Styling --- */
+        .section {
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--dark-text);
+            margin: 0 0 1rem 0;
+        }
+        
+        .section-header p {
+            font-size: 1.25rem;
+            color: var(--gray-text);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 80vh;
+            color: white;
+            background: var(--bg-dark-gradient);
+            padding: 60px 20px;
+        }
+        
+        .hero-section::before {
+             content: '';
+             position: absolute;
+             top: 0; left: 0; right: 0; bottom: 0;
+             background-image: radial-gradient(circle at 10% 20%, rgba(143, 71, 246, 0.2) 0%, transparent 40%),
+                               radial-gradient(circle at 90% 80%, rgba(114, 22, 244, 0.2) 0%, transparent 40%);
+             opacity: 0.8;
+             animation: background-pan 20s linear infinite;
+        }
+        
+        @keyframes background-pan {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.1;
+            margin: 0 0 1rem 0;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            color: var(--light-purple);
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+        }
+
+        /* --- Frosted Glass Card for Market Segments --- */
+        .market-segments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .segment-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.4) 100%);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 12px 35px rgba(40, 19, 69, 0.1);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            text-align: left;
+        }
+        
+        .segment-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 45px rgba(40, 19, 69, 0.15);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .segment-card .icon {
+            font-size: 2.5rem;
+            line-height: 1;
+            margin-bottom: 1rem;
+            color: var(--primary-purple);
+        }
+
+        .segment-card h3 {
+            font-size: 1.5rem;
+            color: var(--dark-text);
+            margin: 0 0 0.75rem 0;
+        }
+        
+        .segment-card p {
+            font-size: 1rem;
+            color: var(--gray-text);
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* --- Trends and Challenges Section --- */
+        .trends-challenges-section {
+            background-color: white;
+        }
+        
+        .trends-challenges-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        .grid-column h3 {
+            font-size: 1.8rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--primary-purple);
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .list-item .icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            color: var(--primary-purple);
+            margin-top: 5px;
+        }
+        
+        .list-item-content h4 {
+            font-size: 1.2rem;
+            margin: 0 0 0.25rem 0;
+            color: var(--dark-text);
+        }
+        .list-item-content p {
+            font-size: 1rem;
+            margin: 0;
+            line-height: 1.5;
+            color: var(--gray-text);
+        }
+
+        /* --- CTA Section --- */
+        .cta-section {
+            background: var(--bg-dark-gradient);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.8rem;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .cta-section p {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background: var(--primary-purple) !important;
+            color: white !important;
+            font-size: 1.2rem !important;
+            font-weight: 600 !important;
+            text-decoration: none !important;
+            line-height: 1.4 !important;
+            border-radius: 12px !important;
+            padding: 16px 32px !important;
+            display: inline-block !important;
+            box-shadow: 0 8px 25px rgba(114, 22, 244, 0.4) !important;
+            transition: all 0.3s ease !important;
+            border: none !important;
+        }
+
+        .cta-button:hover {
+            background: var(--secondary-purple) !important;
+            transform: translateY(-4px) !important;
+            box-shadow: 0 12px 30px rgba(114, 22, 244, 0.5) !important;
+        }
+        
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .trends-challenges-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section {
+                padding: 80px 20px;
+            }
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+             .hero-content p {
+                font-size: 1.2rem;
+            }
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Cash & Treasury Management Systems</h1>
+            <p>A Market Overview on the software solutions that help businesses manage cash flows, liquidity, and financial risks.</p>
+        </div>
+    </section>
+    
+    <!-- Market Segments Section -->
+    <section class="section" style="background-color: var(--bg-light);">
+        <div class="container">
+            <div class="section-header">
+                <h2>How the Market is Segmented</h2>
+                <p>The market for cash and treasury management systems in the US and Canada can be divided into three segments based on functionality and sophistication.</p>
+            </div>
+            <div class="market-segments-grid">
+                <div class="segment-card">
+                    <div class="icon">📊</div>
+                    <h3>Cash Management Tools</h3>
+                    <p>These provide basic cash visibility, forecasting, and reporting. They are suitable for businesses that have simple cash management needs and limited banking relationships.</p>
+                </div>
+                <div class="segment-card">
+                     <div class="icon">⚙️</div>
+                    <h3>Treasury Management Systems (Lite)</h3>
+                    <p>These provide advanced functionality like a central platform for treasury payments, transaction-level reconciliations, and market data integration.</p>
+                </div>
+                <div class="segment-card">
+                    <div class="icon">🛡️</div>
+                    <h3>Treasury & Risk Management Systems</h3>
+                    <p>These provide comprehensive capabilities, such as debt and investment management, FX hedging, trade finance, and compliance for sophisticated global needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Trends and Challenges Section -->
+    <section class="section trends-challenges-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Market Dynamics</h2>
+                 <p>The market is constantly evolving, driven by innovation and new business challenges.</p>
+            </div>
+            <div class="trends-challenges-grid">
+                <div class="grid-column">
+                    <h3>Key Trends</h3>
+                    <div class="list-item">
+                        <div class="icon">💡</div>
+                        <div class="list-item-content">
+                            <h4>Technology Innovation</h4>
+                            <p>The emergence of cloud, AI, and blockchain enables new features like real-time data and predictive analytics.</p>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="icon">📈</div>
+                        <div class="list-item-content">
+                            <h4>Customer Demand</h4>
+                            <p>Increasing global complexity drives demand for more integrated, flexible, and scalable solutions.</p>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="icon">⚖️</div>
+                        <div class="list-item-content">
+                            <h4>Regulatory Compliance</h4>
+                            <p>Growing standards like Basel III and ISO 20022 increase the need for transparent and secure systems.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-column">
+                    <h3>Common Challenges</h3>
+                     <div class="list-item">
+                        <div class="icon">⚠️</div>
+                        <div class="list-item-content">
+                            <h4>Data Quality</h4>
+                            <p>Many businesses still struggle with data silos, inconsistencies, and errors, which hinder effective management.</p>
+                        </div>
+                    </div>
+                     <div class="list-item">
+                        <div class="icon">🔗</div>
+                        <div class="list-item-content">
+                            <h4>System Integration</h4>
+                            <p>Connecting with ERP, accounting, and banking systems can be difficult due to compatibility and customization issues.</p>
+                        </div>
+                    </div>
+                     <div class="list-item">
+                        <div class="icon">💰</div>
+                        <div class="list-item-content">
+                            <h4>Cost and Complexity</h4>
+                            <p>The implementation and maintenance of comprehensive systems can be costly and complex projects to undertake.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="section cta-section">
+        <div class="container">
+            <h2>Find the Right Solution.</h2>
+            <p>Finding the right system to fit your unique business needs is what we do. Schedule a call to learn how we can add value to your cash and treasury functions today!</p>
+            <a href="#" class="cta-button">Schedule a Call</a>
+        </div>
+    </section>
+
+</body>
+</html>
